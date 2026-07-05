@@ -1,6 +1,10 @@
 ---
 name: wiki-lint
-description: Health and growth pass over a knowledge wiki: verify OKF conformance, find staleness, orphan pages, contradictions, duplicate or drifting topics, and coverage gaps, then propose concrete expansions. Use whenever the user asks to lint, check, audit, review, clean up, or improve a wiki or knowledge base, asks "how healthy is my wiki", or wants suggestions for what to add next. Designed to be run on a schedule (e.g. weekly). Read-mostly: writes only a report page and log entries, never rewrites or deletes concept pages.
+description: Health and growth pass over a knowledge wiki — verify OKF conformance, find staleness, orphan pages, contradictions, duplicate or drifting topics, and coverage gaps, then propose concrete expansions. Use whenever the user asks to lint, check, audit, review, clean up, or improve a wiki or knowledge base, asks "how healthy is my wiki", or wants suggestions for what to add next. Designed to be run on a schedule (e.g. weekly). Read-mostly — writes only a report page and log entries, never rewrites or deletes concept pages.
+license: MIT
+metadata:
+  version: "0.2"
+  author: stefan-palm
 ---
 
 # wiki-lint
@@ -24,9 +28,13 @@ that is linted compounds.
 
 Run all of these; report only what you find. An empty section is a finding too.
 
-**1. Conformance.** Every file has valid frontmatter with required `type`;
-tags reference real topics; `created`/`updated` present; links resolve
-bundle-relative; `index.md` actually maps what exists.
+**1. Conformance.** Every non-reserved file has valid frontmatter with
+required `type`. `index.md` and `log.md` are OKF-reserved: the root index
+carries only `okf_version` frontmatter, the log carries none and runs
+newest-first under `## YYYY-MM-DD` headings. Tags reference real topics;
+`created`/`updated` present on concept pages; in-body links are absolute from
+the bundle root (start with `/`) and resolve; `index.md` actually maps what
+exists.
 
 **2. Integrity.** Orphan pages (nothing links to them, index doesn't list
 them); dead links; pages whose first tag doesn't match their location;
@@ -69,7 +77,9 @@ pass catches what ingest structurally cannot.
    must be actionable: name the file, name the fix. Lint reports are
    knowledge too — they compound, and the next lint run reads the previous
    report to check what was acted on.
-2. Append a log entry: date, counts per pass, top three recommendations.
+2. Add a log entry under today's `## YYYY-MM-DD` heading at the top of
+   `wiki/log.md` (OKF logs are newest-first): counts per pass, top three
+   recommendations.
 3. Apply autonomous fixes **only** if the wiki's Autonomy section explicitly
    grants them, and log each one individually.
 4. Tell the user the top findings in a short prose summary, leading with the
@@ -79,7 +89,8 @@ pass catches what ingest structurally cannot.
 ## Hard rules
 
 - Never delete anything. Never rewrite a concept page. Flag and propose.
-- Never touch the inbox or archive.
+- Never write to the inbox or archive. Reading the archive is allowed (intake
+  records are lint input); modifying it is not.
 - One wiki per run; total isolation between wikis.
 - If the previous lint report's top findings were ignored, say so once,
   plainly, without nagging.

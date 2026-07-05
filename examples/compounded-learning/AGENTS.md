@@ -1,4 +1,4 @@
-# AGENTS.md — {{wiki-name}}
+# AGENTS.md — compounded-learning
 
 This file is the constitution of this wiki. Any agent operating on this wiki
 must read this file first and treat it as authoritative. It overrides skill
@@ -6,7 +6,9 @@ defaults where they differ.
 
 ## Purpose
 
-{{purpose — one or two sentences: what questions this wiki answers, and for whom}}
+Answer, for a practitioner building the habit, which compounded-learning
+practices actually work, why they work, and what evidence supports them — so
+the practice improves instead of merely continuing.
 
 ## Scope and isolation
 
@@ -32,8 +34,15 @@ maintained by agents over time. Humans correct it; agents propose changes to it
 via `wiki/log.md`. A proposal is applied only after human acceptance, unless
 the Autonomy section below says otherwise.
 
-{{topic charter — one entry per topic:}}
-{{- `topic-name` — rationale: why knowledge will accumulate along this dimension}}
+- `practices` — rationale: the purpose is about what works; concrete habits,
+  cadences, and workflows are the primary dimension knowledge accumulates
+  along.
+- `failure-modes` — rationale: a practice is understood by how it dies;
+  documented failure modes are what make the practices trustworthy.
+- `foundations` — rationale: the patterns and formats this practice builds on
+  (llm-wiki, OKF, agent skills) will keep generating material as they evolve.
+- `open-questions` — rationale: the purpose is open-ended; lint feeds this
+  topic with what the wiki cannot yet answer.
 
 Topic naming rule: lowercase, hyphenated, singular nouns. Before creating any
 new topic or page, check for an existing near-duplicate under a different
@@ -98,10 +107,8 @@ sources:                 # provenance, producer extension: paths relative to
 
 ## Autonomy
 
-{{default: "Taxonomy changes require human acceptance. To grant autonomy,
-replace this line with explicit permissions, e.g. 'Lint may merge exact
-duplicate topics without asking.'"}}
+Taxonomy changes require human acceptance.
 
 ## History
 
-- {{YYYY-MM-DD}} — wiki created by wiki-init. Initial taxonomy above.
+- 2026-07-01 — wiki created by wiki-init. Initial taxonomy above.

@@ -1,6 +1,10 @@
 ---
 name: wiki-ingest
 description: Process raw material from a wiki's inbox into synthesized, interlinked OKF concept pages, then archive the sources. Use whenever the user asks to process, ingest, add, or file new content into a wiki or knowledge base, says "process the inbox", "add this to my X wiki", or drops files/links/notes destined for a wiki. Also the skill to run on a schedule for automatic inbox processing. Safe to run when the inbox is empty (it reports and exits).
+license: MIT
+metadata:
+  version: "0.2"
+  author: stefan-palm
 ---
 
 # wiki-ingest
@@ -47,8 +51,10 @@ For each concept:
   the page to state both positions with their sources, set
   `status: contested`, and log it. Never silently overwrite the old claim,
   never silently discard the new one.
-- Link densely. When the text mentions a concept that has a page, link it,
-  bundle-relative.
+- Link densely. When the text mentions a concept that has a page, link it with
+  an absolute bundle link — starts with `/`, resolved from `wiki/` as root,
+  e.g. `[taxonomy drift](/failure-modes/taxonomy-drift.md)`. Absolute links
+  survive page moves; relative ones don't.
 
 ## Step 3: When material doesn't fit the charter
 
@@ -69,8 +75,9 @@ You own topic health, but not unilaterally:
    created/updated, anything skipped and why.
 2. Update `wiki/index.md` (new pages appear on the map) and `wiki/topics.md`
    if page counts or emphasis shifted.
-3. Append one log entry for the batch: date, items processed, pages
-   created/updated, proposals raised.
+3. Add one log entry for the batch under today's `## YYYY-MM-DD` heading at
+   the top of `wiki/log.md` (OKF logs are newest-first): items processed,
+   pages created/updated, proposals raised.
 4. Report to the user in a few sentences: what came in, what the wiki learned,
    any proposals awaiting their ruling.
 

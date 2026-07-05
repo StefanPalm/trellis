@@ -1,6 +1,10 @@
 ---
 name: wiki-init
 description: Scaffold a new personal knowledge wiki as a self-contained OKF (Open Knowledge Format) bundle with an agent-owned topic taxonomy. Use whenever the user wants to create, set up, start, or bootstrap a new wiki, knowledge base, second brain, or LLM-wiki, or says things like "new wiki for X", "set up a knowledge base about Y", or "initialize a wiki". Also use when the user drops material for a subject that has no existing wiki and asks where it should live.
+license: MIT
+metadata:
+  version: "0.2"
+  author: stefan-palm
 ---
 
 # wiki-init
@@ -63,14 +67,18 @@ Create this structure inside the knowledge root:
   today's date. The template also contains the OKF format rules and the
   behavioral contract for ingest and lint — do not remove or weaken those
   sections.
-- **wiki/index.md**: OKF frontmatter with `type: overview`. Body: the purpose,
-  a "Start here" note for agents, and a topic list linking to `topics.md`.
-  Keep it honest — an empty wiki's index says the wiki is empty.
+- **wiki/index.md**: the bundle-root index, reserved by OKF. Its only
+  frontmatter is `okf_version: "0.1"` — the root index is the one place OKF
+  permits index frontmatter. Body: the purpose, a "Start here" note for
+  agents, and a topic list linking to `topics.md`. Keep it honest — an empty
+  wiki's index says the wiki is empty.
 - **wiki/topics.md**: `type: overview`. The taxonomy as a readable page, one
   section per topic with its rationale. This page is part of the shareable
   knowledge: whoever receives the bundle gets the map, not just the territory.
-- **wiki/log.md**: `type: log`. First entry: wiki created, purpose, initial
-  taxonomy, by whom.
+- **wiki/log.md**: reserved by OKF; no frontmatter. A `# Log` title, then one
+  `## YYYY-MM-DD` heading per day with entries newest-first, each opening with
+  a bold convention word (**Creation**, **Update**, **Proposal**, **Report**).
+  First entry: **Creation** — wiki created, purpose, initial taxonomy, by whom.
 
 Do not create empty topic subdirectories. Directories are created by
 wiki-ingest the first time a topic receives a page; an empty folder is a lie
